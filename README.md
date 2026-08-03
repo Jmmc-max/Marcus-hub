@@ -10,6 +10,7 @@ A safe Discord slash-command bot that checks public Roblox profile information f
 - `/roblox-check-file file:<txt attachment>` slash command for importing up to 750 public targets at once.
 - Accepts links like `https://www.roblox.com/users/1/profile`.
 - Displays username, display name, user ID, creation date, ban status, description, avatar, and profile link.
+- checking username:password of each account 
 - Optional webhook posting with `WEBHOOK_URL`.
 - Rejects non-Roblox domains; typo domains such as `robiox.com.py` are not accepted.
 
