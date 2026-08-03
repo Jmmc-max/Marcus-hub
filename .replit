@@ -1,0 +1,5 @@
+run = "npm run setup-and-start"
+entrypoint = "src/index.js"
+
+[deployment]
+run = ["sh", "-c", "npm run setup-and-start"]
