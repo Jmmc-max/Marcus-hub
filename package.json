@@ -1,0 +1,25 @@
+{
+  "name": "marcus-hub-roblox-checker-bot",
+  "version": "1.0.0",
+  "description": "Dependency-free Discord Interactions bot that checks public Roblox profile links and posts results to Discord/webhooks.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "register": "node src/register-commands.js",
+    "check": "node --check src/index.js && node --check src/register-commands.js && node --check src/roblox.js && node --check src/env.js && node --check src/discord.js && node --check scripts/configure-env.js",
+    "setup-and-start": "npm run register && npm start",
+    "setup": "npm run register",
+    "configure": "node scripts/configure-env.js"
+  },
+  "keywords": [
+    "discord",
+    "roblox",
+    "checker",
+    "webhook"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
