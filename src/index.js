@@ -9,10 +9,26 @@ const {
   CLIENT_ID,
   DISCORD_PUBLIC_KEY,
   PORT = 3000,
-  WEBHOOK_URL
+  WEBHOOK_URL,
+  PUBLIC_BASE_URL,
+  INTERACTIONS_ENDPOINT_URL
 } = process.env;
 
 const MAX_IMPORT_BYTES = 512_000;
+
+
+function getInteractionsEndpointUrl() {
+  if (INTERACTIONS_ENDPOINT_URL) {
+    return INTERACTIONS_ENDPOINT_URL;
+  }
+
+  if (PUBLIC_BASE_URL) {
+    return `${PUBLIC_BASE_URL.replace(/\/$/, '')}/interactions`;
+  }
+
+  const endpointPortHint = Number(PORT) === 443 ? '' : `:${PORT}`;
+  return `https://YOUR_HOST${endpointPortHint}/interactions`;
+}
 
 function buildBatchSummaryEmbed(results) {
   const opened = results.filter(item => item.ok).length;
@@ -198,9 +214,8 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(Number(PORT), () => {
-  const endpointPortHint = Number(PORT) === 443 ? '' : `:${PORT}`;
   console.log(`Roblox Checker interaction server listening on port ${PORT}`);
-  console.log(`Set your Discord Interactions Endpoint URL to: https://YOUR_HOST${endpointPortHint}/interactions`);
+  console.log(`Set your Discord Interactions Endpoint URL to: ${getInteractionsEndpointUrl()}`);
   if (!DISCORD_PUBLIC_KEY) {
     console.warn('DISCORD_PUBLIC_KEY is not set. Discord requests cannot be verified until you add it.');
   }

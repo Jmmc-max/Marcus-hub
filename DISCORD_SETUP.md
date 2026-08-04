@@ -14,8 +14,12 @@ In your hosting service's Secrets/Environment Variables, add:
 | `GUILD_ID` | Optional server ID for faster command registration |
 | `WEBHOOK_URL` | Optional webhook URL for logs |
 | `PORT` | Optional HTTP port for the Interactions server. Defaults to `3000`. |
+| `PUBLIC_BASE_URL` | Optional public HTTPS base URL, for example `https://YOUR_HOST:3000`. |
+| `INTERACTIONS_ENDPOINT_URL` | Optional full endpoint URL, for example `https://YOUR_HOST:3000/interactions`. Use this when the public URL differs from the local port. |
 
 Do not use a token that has been pasted in chat. Reset it first.
+
+If Discord shows `interactions_endpoint_url: The specified interactions endpoint url could not be verified`, set `INTERACTIONS_ENDPOINT_URL` to the exact public HTTPS URL that Discord can reach, including the port when required.
 
 ## 2. Start the server
 
@@ -25,7 +29,7 @@ Run this on your host:
 npm run setup-and-start
 ```
 
-The server prints this reminder when it starts:
+The server prints this reminder when it starts. If `INTERACTIONS_ENDPOINT_URL` is set, the server prints that exact value:
 
 ```text
 Set your Discord Interactions Endpoint URL to: https://YOUR_HOST:3000/interactions
@@ -44,6 +48,12 @@ Set your Discord Interactions Endpoint URL to: https://YOUR_HOST:3000/interactio
    ```
 
 6. Save changes.
+
+To force the exact URL shown by the app, add this to your host environment and restart before saving again:
+
+   ```env
+   INTERACTIONS_ENDPOINT_URL=https://YOUR_HOST:3000/interactions
+   ```
 
 If Discord rejects the URL, check that:
 
