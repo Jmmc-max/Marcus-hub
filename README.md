@@ -38,13 +38,23 @@ A safe `discord.py` slash-command bot for checking whether pasted text or upload
 
    The bot loads `.env` automatically. `DISCORD_TOKEN` is required. `GUILD_ID` is optional, but it makes slash-command syncing faster while testing. `OWNER_IDS` is a comma-separated list of Discord user IDs allowed to run `/create-lifetime-key`. `KEY_STORE_PATH` is optional and defaults to `data/lifetime_keys.json`.
 
-4. Start the bot:
+4. Start the main bot:
 
    ```bash
    python bot.py
    ```
 
+   Or start the standalone checker bot file with the `/approve-checker-user`, `/check-username-password`, and `/check-username-password-file` commands:
+
+   ```bash
+   python discord_bot_checker.py
+   ```
+
 5. In Discord, have an owner run `/create-lifetime-key user:@someone` to give a user lifetime access. Approved users can then run `/username-password-checker` or upload a text file to `/username-password-checker-file`.
+
+## Standalone checker deployment
+
+For a new server, copy `.env.checker.example` to `.env`, install `requirements.txt`, and run `python discord_bot_checker.py`. See `CHECKER_DEPLOY.md` for the full server checklist, systemd service example, and required files.
 
 ## File format
 
