@@ -198,8 +198,9 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(Number(PORT), () => {
+  const endpointPortHint = Number(PORT) === 443 ? '' : `:${PORT}`;
   console.log(`Roblox Checker interaction server listening on port ${PORT}`);
-  console.log('Set your Discord Interactions Endpoint URL to: https://YOUR_HOST/interactions');
+  console.log(`Set your Discord Interactions Endpoint URL to: https://YOUR_HOST${endpointPortHint}/interactions`);
   if (!DISCORD_PUBLIC_KEY) {
     console.warn('DISCORD_PUBLIC_KEY is not set. Discord requests cannot be verified until you add it.');
   }
